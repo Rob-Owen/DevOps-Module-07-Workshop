@@ -1,0 +1,60 @@
+name: Continuous Integration
+on: [push]
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Dotnet build
+      run: dotnet build --configuration Release
+
+    - name: Dotnet test
+      run: dotnet test
+
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+
+    - name: Typescript install
+      run: npm ci
+      working-directory: ./DotnetTemplate.Web
+
+    - name: Typescript build
+      run: npm run build 
+      working-directory: ./DotnetTemplate.Web
+
+    - name: Typescript test
+      run: npm run test
+      working-directory: ./DotnetTemplate.Web
+
+    - name: Slack success notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_FOOTER: Build succeeded
+      if: success()
+
+    - name: Slack failure notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: danger
+        SLACK_FOOTER: Build failed
+      if: failure()
+
+    - name: Slack cancelled notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: warning
+        SLACK_FOOTER: Build cancelled
+      if: cancelled()

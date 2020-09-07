@@ -1,3 +1,5 @@
+![Build & test workflow](https://github.com/actions/hello-world/workflows/Continuous%20Integration/badge.svg)
+
 # Installs
 
 - [Visual Studio Code](https://code.visualstudio.com/download)

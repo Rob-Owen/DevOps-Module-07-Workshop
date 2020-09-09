@@ -4,6 +4,7 @@
     - Make sure you have the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension
 - [Git](https://git-scm.com/)
 - [NPM](https://www.npmjs.com/get-npm)
+- [.NET Core 3.1](https://dotnet.microsoft.com/download)
 
 # Getting the code
 

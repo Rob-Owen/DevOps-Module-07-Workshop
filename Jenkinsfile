@@ -7,28 +7,11 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Dotnet Build') {
-            steps {
-                sh "dotnet build DotnetTemplate.sln"
-            }
-        }
-        stage('Dotnet Tests') {
-            steps {
-                sh "dotnet test DotnetTemplate.Web.Tests"
-            }
-        }
         stage('Typescript Build') {
             steps {
                 dir("DotnetTemplate.Web/") {
                     sh "npm ci"
                     sh "npm run build"
-                }
-            }
-        }
-        stage('Typescript Tests') {
-            steps {
-                dir ("DotnetTemplate.Web/") {
-                    sh "npm test"
                 }
             }
         }
@@ -39,6 +22,23 @@ pipeline {
                 }
             }
         }
+        stage('Typescript Tests') {
+            steps {
+                dir ("DotnetTemplate.Web/") {
+                    sh "npm test"
+                }
+            }
+        }
+        stage('Dotnet Build') {
+            steps {
+                sh "dotnet build DotnetTemplate.sln"
+            }
+        }
+        stage('Dotnet Tests') {
+            steps {
+                sh "dotnet test DotnetTemplate.Web.Tests"
+            }
+        }
     }
 
     post {
@@ -46,7 +46,7 @@ pipeline {
             slack(":red_circle: Build failed", "danger")
         }
         success {
-            slack(":excellent: Build succeeded", "good")
+            slack(":heavy_check_mark: Build succeeded", "good")
         }
     }
 }

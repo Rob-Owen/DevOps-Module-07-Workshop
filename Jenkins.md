@@ -34,12 +34,12 @@ There is a big docker section in the documentation: https://www.jenkins.io/doc/b
 Jenkins should now be running on http://localhost:8080/. If you go to this url in a browser it should show you a set up page.
 1. Login with the password you got from the logs when starting Jenkins.
 2. Select the necessary plugins (you can always add more later so it's not essential to get this exactly right first time). See image below for which ones I added. The most important one which isn't automatically selected is GitHub.
-![Jenkins plugins](https://github.com/CorndelWithSoftwire/DevOps-Module-07-Workshop/tree/model-answer/img/jenkins-plugins.png)
+![Jenkins plugins](img/jenkins-plugins.png)
 3. Create an admin user.
 4. Use the default jenkins url (http://localhost:8080)
 
 You should now see the Jenkins dashboard. One last thing it might be worth doing is going to Manage Jenkins -> Configure System -> GitHub API usage and change the limiting strategy to "Throttle at/near rate limit". Otherwise I found it refused to scan for new branches when I added a build.
-![GitHub Api settings](https://github.com/CorndelWithSoftwire/DevOps-Module-07-Workshop/tree/model-answer/img/jenkins-throttle.png)
+![GitHub Api settings](img/jenkins-throttle.png)
 
 ## Setting up the Jenkins build for the mini app
 1. Select New Item.

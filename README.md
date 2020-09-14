@@ -18,11 +18,11 @@ You should now be able to open the project folder in Visual Studio Code.
 
 # Running the app
 
-The project should now build. Confirm this via running `dotnet build` and `npm run dev` (if it's your first time building you also need to run `npm install`) from the terminal in the project folder.
+The project should now build. Confirm this via running `dotnet build` from the terminal in the project folder and `npm run build` (if it's your first time building you also need to run `npm install`) in the DotnetTemplate.Web folder.
 
 You can now run the app by running `dotnet run` in the DotnetTemplate.Web folder.
 
-You can now see the website by going to [https://localhost:5001/](https://localhost:5001/)
+You can now see the website by going to [https://localhost:80/](https://localhost:80/)
 
 # Running the tests
 

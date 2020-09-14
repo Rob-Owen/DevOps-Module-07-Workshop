@@ -30,7 +30,11 @@ namespace DotnetTemplate.Web
         {
             return Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+                .ConfigureWebHostDefaults(webBuilder => 
+                {
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port);
+                });
         }
 
         public static void SetUpLogger()
